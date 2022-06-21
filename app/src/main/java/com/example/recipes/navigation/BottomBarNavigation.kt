@@ -8,36 +8,36 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.recipes.screens.CreateRecipe
-import com.example.recipes.screens.Recipe
+import com.example.recipes.screens.RecipesList
 import com.example.recipes.screens.ShoppingList
 import com.example.recipes.screens.WeekList
 
 class BottomBarNavigation {
 
     val items = listOf(
-        BottomBarNavigationScreen.Recipe,
-        BottomBarNavigationScreen.CreateRecipe,
-        BottomBarNavigationScreen.WeekList,
-        BottomBarNavigationScreen.ShoppingList
+        BottomBarRoutes.Recipe,
+        BottomBarRoutes.CreateRecipe,
+        BottomBarRoutes.WeekList,
+        BottomBarRoutes.ShoppingList
     )
 
     @Composable
     fun BottomBarNavHost(navController: NavHostController, innerPadding: PaddingValues) {
         NavHost(
             navController = navController,
-            startDestination = BottomBarNavigationScreen.Recipe.route,
+            startDestination = BottomBarRoutes.Recipe.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(BottomBarNavigationScreen.Recipe.route) {
-                Recipe().RenderScreen()
+            composable(BottomBarRoutes.Recipe.route) {
+                RecipesList().RenderScreen()
             }
-            composable(BottomBarNavigationScreen.CreateRecipe.route) {
+            composable(BottomBarRoutes.CreateRecipe.route) {
                 CreateRecipe().RenderScreen()
             }
-            composable(BottomBarNavigationScreen.WeekList.route) {
+            composable(BottomBarRoutes.WeekList.route) {
                 WeekList().RenderScreen()
             }
-            composable(BottomBarNavigationScreen.ShoppingList.route) {
+            composable(BottomBarRoutes.ShoppingList.route) {
                 ShoppingList().RenderScreen()
             }
         }

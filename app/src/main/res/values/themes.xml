@@ -2,6 +2,6 @@
 <resources>
 
     <style name="Theme.Recipes" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary_transparent20</item>
     </style>
 </resources>
