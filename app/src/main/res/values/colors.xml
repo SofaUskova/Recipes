@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF6750A4</color>
+    <color name="primary_transparent20">#336750A4</color>
+
+    <color name="black">#FF49454F</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

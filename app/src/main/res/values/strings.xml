@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Recipes</string>
+
+    <string name="bottom_nav_recipes">Recipes</string>
+    <string name="bottom_nav_create_recipe">Recipes</string>
+    <string name="bottom_nav_week_list">Recipes</string>
+    <string name="bottom_nav_shopping_list">Recipes</string>
+</resources>
