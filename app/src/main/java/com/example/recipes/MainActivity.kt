@@ -12,7 +12,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.recipes.navigation.BottomBarNavigation
+import com.example.recipes.navigation.bottombar.BottomBarNavigation
 import com.example.recipes.ui.theme.Black
 import com.example.recipes.ui.theme.PrimaryTransparent20
 import com.example.recipes.ui.theme.RecipesTheme

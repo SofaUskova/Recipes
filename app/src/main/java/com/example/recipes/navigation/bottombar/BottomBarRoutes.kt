@@ -1,4 +1,4 @@
-package com.example.recipes.navigation
+package com.example.recipes.navigation.bottombar
 
 import androidx.annotation.StringRes
 import com.example.recipes.R
@@ -8,8 +8,8 @@ sealed class BottomBarRoutes(
     @StringRes val labelId: Int,
     val iconId: Int
 ) {
-    object Recipe : BottomBarRoutes(
-        "recipe",
+    object RecipeList : BottomBarRoutes(
+        "recipe_list",
         R.string.bottom_nav_recipes,
         R.drawable.ic_bottom_nav_receipt
     )

@@ -15,7 +15,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.recipes.data.Recipe
+import com.example.recipes.navigation.Route
 import com.example.recipes.ui.utils.bottomPadding6dp
 import com.example.recipes.ui.utils.horizontalPadding
 import com.example.recipes.ui.utils.shadowRoundedCornerShape12dp
@@ -23,7 +25,10 @@ import com.example.recipes.ui.utils.topPadding16dp
 import com.example.recipes.ui.utils.verticalPadding
 
 @OptIn(ExperimentalMaterialApi::class)
-class RecipeCard(private val recipe: Recipe) {
+class RecipeCard(
+    private val recipe: Recipe,
+    private val navController: NavHostController,
+) {
 
     @Composable
     fun Render() {
@@ -33,7 +38,7 @@ class RecipeCard(private val recipe: Recipe) {
                 .fillMaxWidth()
                 .bottomPadding6dp()
                 .shadowRoundedCornerShape12dp(),
-            onClick = { /*RecipeScreen().RenderScreen()*/ },
+            onClick = { navController.navigate(Route.Recipe.route) },
         ) {
             Column(
                 modifier = Modifier.verticalPadding(16.dp)
