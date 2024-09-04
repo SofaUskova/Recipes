@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Recipes</string>
+    <string name="title_recipes">Recipes</string>
+    <string name="title_menu">Menu</string>
+    <string name="title_shop_list">Shop List</string>
+
+    <string name="menu_item_delete">Delete</string>
+    <string name="menu_item_edit">Edit</string>
+
+    <string name="new_ingredient_ingredient_hint">ingredient</string>
+    <string name="new_ingredient_quantity_hint">quantity</string>
+    <string name="new_ingredient_metric_hint">mtrc</string>
+</resources>

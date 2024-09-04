@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ingredient"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding8dp"
+        android:layout_weight="0.5"
+        android:hint="@string/new_ingredient_ingredient_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ingredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_quantity"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding8dp"
+        android:layout_weight="0.2"
+        android:hint="@string/new_ingredient_quantity_hint">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_metric"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding8dp"
+        android:layout_weight="0.2"
+        android:hint="@string/new_ingredient_metric_hint">
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_metric"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/iv_remove_ingredient"
+        android:layout_width="@dimen/padding10dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/padding4dp"
+        android:layout_weight="0.1"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_close_black" />
+</LinearLayout>
