@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,9 +13,13 @@ import com.example.recipes.databinding.FragmentListRecipeBinding
 import com.example.recipes.db.AppDatabase
 import com.example.recipes.ui.models.Recipe
 import com.example.recipes.ui.recipe.RecipeInformationFragment.Companion.RECIPE_ID
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class ListRecipeFragment : Fragment() {
+class ListRecipeFragment : DaggerFragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: FragmentListRecipeBinding
     private lateinit var viewModel: ListRecipeViewModel
     private lateinit var adapter: ListRecipeAdapter
@@ -28,7 +31,7 @@ class ListRecipeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this)[ListRecipeViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[ListRecipeViewModel::class.java]
         binding = FragmentListRecipeBinding.inflate(inflater, container, false)
         db = AppDatabase(requireContext())
         return binding.root

@@ -9,16 +9,18 @@ import com.example.recipes.ui.models.toRecipe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class ListRecipeViewModel : ViewModel() {
+class ListRecipeViewModel @Inject constructor(
+//    private val repository: RecipeRepository
+) : ViewModel() {
     var listOfRecipes = MutableLiveData<List<Recipe>>()
 
     fun getAllRecipes(db: AppDatabase) {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
-                
                 val recipes = db.recipeDao().geRecipeWithIngredients()
-                listOfRecipes.postValue(recipes.map { it.toRecipe() })
+                listOfRecipes.postValue(recipes?.map { it.toRecipe() })
             }
         }
     }

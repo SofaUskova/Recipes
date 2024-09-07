@@ -15,7 +15,7 @@ interface RecipeDao {
 
     @Transaction
     @Query("SELECT * FROM recipe")
-    fun geRecipeWithIngredients(): List<RecipeWithIngredients>
+    fun geRecipeWithIngredients(): List<RecipeWithIngredients>?
 
     fun insertOrUpdateRecipe(recipe: RecipeEntity) {
         if (getRecipeById(recipe.id) != null) {
