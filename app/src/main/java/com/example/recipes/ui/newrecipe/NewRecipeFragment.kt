@@ -6,34 +6,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentNewRecipeBinding
-import com.example.recipes.db.AppDatabase
 import com.example.recipes.ui.getDrawable
 import com.example.recipes.ui.models.Recipe
 import com.example.recipes.ui.newrecipe.adapters.NewRecipeScreenAdapter
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class NewRecipeFragment : Fragment() {
+class NewRecipeFragment : DaggerFragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: FragmentNewRecipeBinding
     private lateinit var viewModel: NewRecipeViewModel
     private lateinit var adapter: NewRecipeScreenAdapter
-    private val launcher = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        uri?.apply { adapter.setImage(this) }
-    }
-    private lateinit var db: AppDatabase // todo move to di
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            uri?.apply { adapter.setImage(this) }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this)[NewRecipeViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[NewRecipeViewModel::class.java]
         binding = FragmentNewRecipeBinding.inflate(inflater, container, false)
-        db = AppDatabase(requireContext())
         return binding.root
     }
 
@@ -47,7 +48,7 @@ class NewRecipeFragment : Fragment() {
         viewModel.currentRecipe.observe(viewLifecycleOwner) {
             configAdapter(it)
         }
-        viewModel.getRecipe(id = arguments?.getLong(RECIPE_ID), db)
+        viewModel.getRecipe(id = arguments?.getLong(RECIPE_ID))
     }
 
     private fun configToolbar() {
@@ -70,7 +71,7 @@ class NewRecipeFragment : Fragment() {
                     adapter.updateFields()
                 } else {
                     val newRecipe = adapter.collectNewRecipe()
-                    viewModel.saveRecipe(newRecipe, db) { back() }
+                    viewModel.saveRecipe(newRecipe) { back() }
                 }
             },
             pickImagesAction = {

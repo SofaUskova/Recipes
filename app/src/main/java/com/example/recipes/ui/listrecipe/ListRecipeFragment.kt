@@ -10,7 +10,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentListRecipeBinding
-import com.example.recipes.db.AppDatabase
 import com.example.recipes.ui.models.Recipe
 import com.example.recipes.ui.recipe.RecipeInformationFragment.Companion.RECIPE_ID
 import dagger.android.support.DaggerFragment
@@ -24,7 +23,6 @@ class ListRecipeFragment : DaggerFragment() {
     private lateinit var viewModel: ListRecipeViewModel
     private lateinit var adapter: ListRecipeAdapter
     private lateinit var cardClickListener: CardClickListener
-    private lateinit var db: AppDatabase // todo move to di
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +31,6 @@ class ListRecipeFragment : DaggerFragment() {
     ): View {
         viewModel = ViewModelProvider(this, viewModelFactory)[ListRecipeViewModel::class.java]
         binding = FragmentListRecipeBinding.inflate(inflater, container, false)
-        db = AppDatabase(requireContext())
         return binding.root
     }
 
@@ -46,7 +43,7 @@ class ListRecipeFragment : DaggerFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getAllRecipes(db)
+        viewModel.getAllRecipes()
     }
 
     private fun configViewModel() {

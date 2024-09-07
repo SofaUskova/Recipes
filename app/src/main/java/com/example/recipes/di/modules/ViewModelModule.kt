@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.recipes.di.ViewModelFactory
 import com.example.recipes.di.ViewModelKey
 import com.example.recipes.ui.listrecipe.ListRecipeViewModel
+import com.example.recipes.ui.newrecipe.NewRecipeViewModel
+import com.example.recipes.ui.recipe.RecipeInformationViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -19,4 +21,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ListRecipeViewModel::class)
     abstract fun bindListRecipeViewModel(viewModel: ListRecipeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewRecipeViewModel::class)
+    abstract fun bindNewRecipeViewModel(viewModel: NewRecipeViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RecipeInformationViewModel::class)
+    abstract fun bindRecipeInformationViewModel(viewModel: RecipeInformationViewModel): ViewModel
 }

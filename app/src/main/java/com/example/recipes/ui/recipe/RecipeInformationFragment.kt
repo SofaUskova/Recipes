@@ -6,32 +6,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentRecipeInformationBinding
-import com.example.recipes.db.AppDatabase
 import com.example.recipes.ui.getDrawable
 import com.example.recipes.ui.loadImage
 import com.example.recipes.ui.models.Recipe
 import com.example.recipes.ui.newrecipe.NewRecipeFragment
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 
-class RecipeInformationFragment : Fragment() {
+class RecipeInformationFragment : DaggerFragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: FragmentRecipeInformationBinding
     private lateinit var viewModel: RecipeInformationViewModel
-    private lateinit var db: AppDatabase // todo move to di
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this)[RecipeInformationViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[RecipeInformationViewModel::class.java]
         binding = FragmentRecipeInformationBinding.inflate(inflater, container, false)
-        db = AppDatabase(requireContext())
         return binding.root
     }
 
@@ -47,7 +47,7 @@ class RecipeInformationFragment : Fragment() {
         viewModel.currentRecipe.observe(viewLifecycleOwner) {
             collectRecipeInfo(it)
         }
-        viewModel.getRecipe(recipeId, db)
+        viewModel.getRecipe(recipeId)
     }
 
     private fun configToolbar() {
@@ -60,7 +60,7 @@ class RecipeInformationFragment : Fragment() {
         }
     }
 
-    private fun createToolbarMenuListener() : Toolbar.OnMenuItemClickListener {
+    private fun createToolbarMenuListener(): Toolbar.OnMenuItemClickListener {
         return Toolbar.OnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.act_delete -> deleteRecipe()
@@ -89,7 +89,7 @@ class RecipeInformationFragment : Fragment() {
     }
 
     private fun deleteRecipe() {
-        viewModel.deleteRecipe(db) { back() }
+        viewModel.deleteRecipe { back() }
     }
 
     private fun editRecipe() {

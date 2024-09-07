@@ -3,7 +3,8 @@ package com.example.recipes.ui.newrecipe
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.recipes.db.AppDatabase
+import com.example.recipes.repository.IngredientRepository
+import com.example.recipes.repository.RecipeRepository
 import com.example.recipes.ui.models.Recipe
 import com.example.recipes.ui.models.RecipeButtonItem
 import com.example.recipes.ui.models.RecipeImageItem
@@ -11,21 +12,23 @@ import com.example.recipes.ui.models.RecipeIngredientItem
 import com.example.recipes.ui.models.RecipeItem
 import com.example.recipes.ui.models.RecipeItemType
 import com.example.recipes.ui.models.RecipeTextItem
-import com.example.recipes.ui.models.toIngredientEntity
 import com.example.recipes.ui.models.toRecipe
-import com.example.recipes.ui.models.toRecipeEntity
 import com.example.recipes.ui.models.toRecipeIngredientItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class NewRecipeViewModel : ViewModel() {
+    class NewRecipeViewModel @Inject constructor(
+    private val repositoryRecipe: RecipeRepository,
+    private val repositoryIngredient: IngredientRepository
+) : ViewModel() {
     val currentRecipe = MutableLiveData<Recipe?>()
 
-    fun getRecipe(id: Long?, db: AppDatabase) {
+    fun getRecipe(id: Long?) {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
-                val recipe = db.recipeDao().getRecipeById(id ?: -1)
+                val recipe = repositoryRecipe.getRecipeById(id ?: -1)
                 currentRecipe.postValue(recipe?.toRecipe())
             }
         }
@@ -72,13 +75,11 @@ class NewRecipeViewModel : ViewModel() {
 
     private fun createListOfEmptyIngredient() = listOf(RecipeIngredientItem())
 
-    fun saveRecipe(newRecipe: Recipe, db: AppDatabase, completeAction: () -> Unit) {
+    fun saveRecipe(newRecipe: Recipe, completeAction: () -> Unit) {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
-                db.recipeDao().insertOrUpdateRecipe(newRecipe.toRecipeEntity())
-                newRecipe.ingredients.forEach {
-                    db.ingredientDao().insertOrUpdateIngredient(it.toIngredientEntity(newRecipe.id))
-                }
+                repositoryRecipe.insertOrUpdateRecipe(newRecipe)
+                repositoryIngredient.insertOrUpdateIngredient(newRecipe.ingredients, newRecipe.id)
             }
         }.invokeOnCompletion { completeAction() }
     }
