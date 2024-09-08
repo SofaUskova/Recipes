@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipes.R
 import com.example.recipes.databinding.FragmentListRecipeBinding
 import com.example.recipes.presentation.models.Recipe
@@ -22,7 +21,6 @@ class ListRecipeFragment : DaggerFragment() {
     private lateinit var binding: FragmentListRecipeBinding
     private lateinit var viewModel: ListRecipeViewModel
     private lateinit var adapter: ListRecipeAdapter
-    private lateinit var cardClickListener: CardClickListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,24 +53,18 @@ class ListRecipeFragment : DaggerFragment() {
     private fun configAddNewRecipeBtn(view: View) {
         binding.btnAddNewRecipe.setOnClickListener {
             Navigation.findNavController(view)
-                .navigate(R.id.action_navigation_list_recipes_to_navigation_new_recipe)
+                .navigate(R.id.action_list_recipes_to_new_recipe)
         }
     }
 
     private fun configAdapter(view: View) {
-        configCardClickListener(view)
-        adapter = ListRecipeAdapter(cardClickListener)
-        binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-        binding.recycler.adapter = adapter
-    }
-
-    private fun configCardClickListener(view: View) {
-        cardClickListener = CardClickListener { recipe ->
+        adapter = ListRecipeAdapter { recipe ->
             Navigation.findNavController(view).navigate(
-                R.id.action_navigation_list_recipes_to_navigation_recipe_info,
+                R.id.action_list_recipes_to_recipe_info,
                 bundleOf(RECIPE_ID to recipe.id)
             )
         }
+        adapter.setAdapter(binding.recycler, LayoutType.LINEAR, requireContext())
     }
 
     private fun updateRecyclerData(listOfRecipes: List<Recipe>?) {

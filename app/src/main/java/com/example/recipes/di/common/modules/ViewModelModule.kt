@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.recipes.di.common.ViewModelFactory
 import com.example.recipes.di.common.ViewModelKey
+import com.example.recipes.presentation.ui.listrecipe.ListCheckableRecipeViewModel
 import com.example.recipes.presentation.ui.listrecipe.ListRecipeViewModel
+import com.example.recipes.presentation.ui.menu.MenuViewModel
 import com.example.recipes.presentation.ui.newrecipe.NewRecipeViewModel
 import com.example.recipes.presentation.ui.recipe.RecipeInformationViewModel
 import dagger.Binds
@@ -31,4 +33,14 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RecipeInformationViewModel::class)
     abstract fun bindRecipeInformationViewModel(viewModel: RecipeInformationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MenuViewModel::class)
+    abstract fun bindMenuViewModel(viewModel: MenuViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ListCheckableRecipeViewModel::class)
+    abstract fun bindListCheckableRecipeViewModel(viewModel: ListCheckableRecipeViewModel): ViewModel
 }

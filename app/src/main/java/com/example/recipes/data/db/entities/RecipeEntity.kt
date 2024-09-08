@@ -16,5 +16,7 @@ data class RecipeEntity(
     @ColumnInfo(name = "time")
     val time: Float,
     @ColumnInfo(name = "recipe")
-    val recipe: String
+    val recipe: String,
+    @ColumnInfo(name = "menu_title", defaultValue = " ")
+    val menuTitle: String,
 )

@@ -8,4 +8,5 @@ interface IRecipeRepository {
     suspend fun insertOrUpdateRecipe(recipe: RecipeEntity)
     suspend fun getRecipeById(id: Long): RecipeWithIngredientsEntity?
     suspend fun delete(recipe: RecipeEntity?)
+    suspend fun updateRecipe(recipe: RecipeEntity)
 }

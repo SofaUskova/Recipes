@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:context=".presentation.ui.listrecipe.ListRecipeFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/im_close"
+            android:layout_width="@dimen/ic_min_size36dp"
+            android:layout_height="@dimen/ic_min_size36dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/ic_close_black" />
+
+        <TextView
+            android:id="@+id/tv_top_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/collect_menu_screen_title"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/im_accept"
+            android:layout_width="@dimen/ic_min_size36dp"
+            android:layout_height="@dimen/ic_min_size36dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:importantForAccessibility="no"
+            app:srcCompat="@drawable/ic_done_black" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/padding8dp"
+        android:layout_marginVertical="@dimen/padding12dp"
+        android:hint="@string/collect_menu_menu_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_top">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_title"
+        tools:listitem="@layout/item_min_recipe" />
+</androidx.constraintlayout.widget.ConstraintLayout>

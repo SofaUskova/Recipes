@@ -75,7 +75,7 @@ class NewRecipeViewModel @Inject constructor(
     fun saveRecipe(newRecipe: Recipe, completeAction: () -> Unit) {
         viewModelScope.launch {
             withContext(Dispatchers.Default) {
-                interactor.insertOrUpdateFullRecipe(newRecipe, newRecipe.ingredients)
+                interactor.saveOrUpdateRecipe(newRecipe, newRecipe.ingredients)
             }
         }.invokeOnCompletion { completeAction() }
     }

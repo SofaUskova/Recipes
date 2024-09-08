@@ -29,6 +29,13 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cb_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="0dp"

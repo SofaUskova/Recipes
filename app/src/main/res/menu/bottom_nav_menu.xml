@@ -7,12 +7,12 @@
         android:title="@string/title_recipes" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_menu"
         android:icon="@drawable/ic_recipe_black"
         android:title="@string/title_menu" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_shoplist"
         android:icon="@drawable/ic_shop_black"
         android:title="@string/title_shop_list" />
 

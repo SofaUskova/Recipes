@@ -64,5 +64,5 @@
         android:layout_weight="0.1"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_close_black" />
+        android:src="@drawable/ic_close_in_circle_black" />
 </LinearLayout>

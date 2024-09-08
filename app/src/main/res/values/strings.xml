@@ -10,4 +10,8 @@
     <string name="new_ingredient_ingredient_hint">ingredient</string>
     <string name="new_ingredient_quantity_hint">quantity</string>
     <string name="new_ingredient_metric_hint">mtrc</string>
+
+    <string name="collect_menu_screen_title">Choose recipes</string>
+    <string name="collect_menu_menu_title">Menu title</string>
+    <string name="collect_menu_chose_recipes">Please, chose any recipes</string>
 </resources>

@@ -95,7 +95,7 @@ class RecipeInformationFragment : DaggerFragment() {
     private fun editRecipe() {
         val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_main)
         navController.navigate(
-            R.id.action_navigation_recipe_info_to_navigation_new_recipe,
+            R.id.action_recipe_info_to_new_recipe,
             bundleOf(NewRecipeFragment.RECIPE_ID to viewModel.currentRecipe.value?.id)
         )
     }

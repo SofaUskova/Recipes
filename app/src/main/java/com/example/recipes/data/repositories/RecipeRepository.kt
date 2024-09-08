@@ -25,4 +25,8 @@ class RecipeRepository @Inject constructor(
     override suspend fun delete(recipe: RecipeEntity?) {
         dao.delete(recipe)
     }
+
+    override suspend fun updateRecipe(recipe: RecipeEntity) {
+        dao.updateRecipe(recipe)
+    }
 }

@@ -3,12 +3,15 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="ic_min_size36dp">36dp</dimen>
+
     <dimen name="padding4dp">4dp</dimen>
     <dimen name="padding8dp">8dp</dimen>
     <dimen name="padding10dp">10dp</dimen>
     <dimen name="padding12dp">12dp</dimen>
     <dimen name="padding14dp">14dp</dimen>
     <dimen name="padding16dp">16dp</dimen>
+    <dimen name="padding48dp">48dp</dimen>
 
     <dimen name="corner_radius8dp">8dp</dimen>
     <dimen name="corner_radius16dp">16dp</dimen>
